@@ -7,7 +7,7 @@ bool screen::outbounds(int x, int y) {
     return x < 0 || x >= colorData[0].size() || y < 0 || y >= colorData.size();
 }
 
-std::ostream& operator<<(std::ostream& out, screen& s) {
+std::ostream& operator<<(std::ostream& out, const screen& s) {
     out << "P3\n";
     out << s.colorData.size() << " " << s.colorData[0].size() << "\n";
     out << 255 << "\n";
@@ -26,14 +26,14 @@ std::vector<std::tuple<short, short, short>>& screen::operator[](int index) {
     return colorData[index];
 }
 
-std::tuple<short, short, short> screen::get(int row, int col) {
+std::tuple<short, short, short> screen::get(int row, int col) const {
     if(row < 0 || row >= colorData.size() || col < 0 || col >= colorData[0].size()) {
         throw std::invalid_argument("Requested screen element out of bounds");
     }
     return colorData[row][col];
 }
 
-void screen::set(int row, int col, std::tuple<short, short, short> new_color) {
+void screen::set(int row, int col, const std::tuple<short, short, short>& new_color) {
     if(row < 0 || row >= colorData.size() || col < 0 || col >= colorData[0].size()) {
         throw std::invalid_argument("Requested screen element out of bounds");
     }
@@ -48,13 +48,13 @@ void screen::clear() {
     }
 }
 
-void screen::drawMatrix(edge_matrix& edges, std::tuple<short, short, short> color) {
+void screen::drawMatrix(const edge_matrix& edges, const std::tuple<short, short, short>& color) {
     for(int i = 0; i < edges.width() - 1; i += 2) {
-        drawLine({edges[0][i], edges[1][i]}, {edges[0][i + 1], edges[1][i + 1]}, color);
+        drawLine({edges.get(0, i), edges.get(1, i)}, {edges.get(0, i + 1), edges.get(1, i + 1)}, color);
     }
 }
 
-void screen::drawLine(std::pair<int, int> a, std::pair<int, int> b, std::tuple<short, short, short> color) {
+void screen::drawLine(const std::pair<int, int>& a, const std::pair<int, int>& b, const std::tuple<short, short, short>& color) {
     int dx = (b.first - a.first), dy = (b.second - a.second);
     bool drawnOff = false;
 

@@ -13,7 +13,7 @@ class screen {
         /**
          * Prints out contents of screen in a PPM ASCII format.
          **/
-        friend std::ostream& operator<<(std::ostream& out, screen& s);
+        friend std::ostream& operator<<(std::ostream& out, const screen& s);
 
         /**
          * Reference to a point
@@ -23,12 +23,12 @@ class screen {
         /**
          * Get the color of a point
          **/
-        std::tuple<short, short, short> get(int row, int col);
+        std::tuple<short, short, short> get(int row, int col) const;
 
         /**
          * Set the color of a point
          **/
-        void set(int row, int col, std::tuple<short, short, short> new_color);
+        void set(int row, int col, const std::tuple<short, short, short>& new_color);
 
         /**
          * Fills the screen with black
@@ -38,10 +38,10 @@ class screen {
         /**
          * Draws edge matrix to a screen.  Currently only takes in the x and y coordinates.
          **/
-        void drawMatrix(edge_matrix& edges, std::tuple<short, short, short> color);
+        void drawMatrix(const edge_matrix& edges, const std::tuple<short, short, short>& color);
 
         /**
          * Draws a line from point a to point b. Keep in mind that these points are not (row, col), but (x, y). 
          **/ 
-        void drawLine(std::pair<int, int> a, std::pair<int, int> b, std::tuple<short, short, short> color);
+        void drawLine(const std::pair<int, int>& a, const std::pair<int, int>& b, const std::tuple<short, short, short>& color);
 };
