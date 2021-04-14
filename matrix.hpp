@@ -21,7 +21,7 @@ public:
     /**
      * Outputs contents of matrix, where spaces separate entries in a row and rows are separated by a space followed by a newline.
      **/
-    friend std::ostream& operator<<(std::ostream& out, matrix& mat);
+    friend std::ostream& operator<<(std::ostream& out, const matrix& mat);
 
     /**
      * Performs matrix multiplication and returns the result.

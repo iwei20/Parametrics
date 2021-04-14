@@ -26,8 +26,8 @@ matrix& matrix::ident(int size) {
     return (*result);
 }
 
-std::ostream& operator<<(std::ostream& out, matrix& mat) {
-    for(std::vector<double>& row : mat.data) {
+std::ostream& operator<<(std::ostream& out, const matrix& mat) {
+    for(const std::vector<double>& row : mat.data) {
         for(double item : row) {
             out << item << " ";
         }
