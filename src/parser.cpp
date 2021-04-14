@@ -1,5 +1,6 @@
 #include "parser.hpp"
 
+#include "parametric.hpp"
 #include <istream>
 #include <string>
 #include <fstream>

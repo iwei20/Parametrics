@@ -1,5 +1,7 @@
 #pragma once
 
+class transform_manager;
+
 #include "matrix.hpp"
 
 class transform_manager {

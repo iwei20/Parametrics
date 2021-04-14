@@ -1,5 +1,11 @@
 #pragma once
 
+class parametric_func;
+class const_parametric;
+class circle_parametric;
+class hermite_parametric;
+class bezier_parametric;
+
 #include "matrix.hpp"
 #include <vector>
 

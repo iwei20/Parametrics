@@ -1,5 +1,7 @@
 #pragma once
 
+class screen;
+
 #include "matrix.hpp"
 #include <ostream>
 #include <tuple>

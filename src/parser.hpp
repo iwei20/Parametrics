@@ -1,5 +1,7 @@
 #pragma once
 
+class parser;
+
 #include "screen.hpp"
 #include "matrix.hpp"
 #include "transform_manager.hpp"

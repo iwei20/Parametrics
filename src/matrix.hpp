@@ -1,6 +1,8 @@
 #pragma once
 
-#include "parametric.hpp"
+class matrix;
+class edge_matrix;
+
 #include <vector>
 #include <ostream>
 
@@ -54,6 +56,8 @@ public:
      **/
     int height() const;
 };
+
+#include "parametric.hpp"
 
 class edge_matrix : public matrix {
     private:
