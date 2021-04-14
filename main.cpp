@@ -12,6 +12,7 @@ int main(int argc, char** argv) {
             std::cout << "Could not read file\n";
         } else {
             screen s(std::stoi(argv[2]), std::stoi(argv[3]));
+            s.invert(true);
             parser p;
             p.parse(s, fin);
             fin.close();

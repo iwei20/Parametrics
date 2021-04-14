@@ -13,14 +13,28 @@ std::ostream& operator<<(std::ostream& out, const screen& s) {
     out << s.colorData.size() << " " << s.colorData[0].size() << "\n";
     out << 255 << "\n";
 
-    for(int i = 0; i < s.colorData.size(); ++i) {
-        for(int j = 0; j < s.colorData[i].size(); ++j) {
-            short red, green, blue;
-            std::tie(red, green, blue) = s.colorData[i][j];
-            out << red << " " << green << " " << blue << (j == s.colorData[i].size() - 1 ? "\n" : " ");
+    if(s._invert) {
+        for(int i = s.colorData.size() - 1; i >= 0; --i) {
+            for(int j = 0; j < s.colorData[i].size(); ++j) {
+                short red, green, blue;
+                std::tie(red, green, blue) = s.colorData[i][j];
+                out << red << " " << green << " " << blue << (j == s.colorData[i].size() - 1 ? "\n" : " ");
+            }
+        }
+    } else {
+        for(int i = 0; i < s.colorData.size(); ++i) {
+            for(int j = 0; j < s.colorData[i].size(); ++j) {
+                short red, green, blue;
+                std::tie(red, green, blue) = s.colorData[i][j];
+                out << red << " " << green << " " << blue << (j == s.colorData[i].size() - 1 ? "\n" : " ");
+            }
         }
     }
     return out;
+}
+
+void screen::invert(bool value) {
+    _invert = value;
 }
 
 std::vector<std::tuple<short, short, short>>& screen::operator[](int index) {

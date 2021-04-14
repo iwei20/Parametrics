@@ -9,6 +9,7 @@ class screen;
 class screen {
     private:
         std::vector<std::vector<std::tuple<short, short, short>>> colorData;
+        bool _invert = false;
         bool outbounds(int x, int y);
     public:
         screen(int width, int height);
@@ -16,6 +17,12 @@ class screen {
          * Prints out contents of screen in a PPM ASCII format.
          **/
         friend std::ostream& operator<<(std::ostream& out, const screen& s);
+
+        /**
+         * Inverts the screen vertically so you can have nice smiley face.
+         * By default, y increases as the screen goes down. If invert is true, just flips the screen when drawing.
+         **/
+        void invert(bool value);
 
         /**
          * Reference to a point
