@@ -5,7 +5,7 @@
 std::vector<double>& parametric_func::get_range(int num_vals) const {
     std::vector<double>* range = new std::vector<double>();
     double increment = 1.0 / (num_vals - 1); 
-    for(double i = 0; i <= 1; i += increment) {
+    for(double i = 0; i <= 1.00001; i += increment) {
         range->push_back(get(i));
     }
     return *range;
