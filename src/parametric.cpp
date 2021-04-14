@@ -77,7 +77,7 @@ double hermite_parametric::hermite_parametric_y::get(double t) const {
 }
 
 matrix bezier_parametric::binomial_mult(std::vector<std::vector<double>>{
-    {-1,  3,  3, -1},
+    {-1,  3, -3,  1},
     { 3, -6,  3,  0},
     {-3,  3,  0,  0},
     { 1,  0,  0,  0}
