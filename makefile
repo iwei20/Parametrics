@@ -2,8 +2,7 @@ sourcedir = src
 objdir = obj
 targetdir = bin
 
-deps = main.o parametric.o matrix.o parser.o screen.o transform_manager.o
-list = $(addprefix $(objdir)/,$(deps))
+list = $(subst $(sourcedir),$(objdir),$(subst .cpp,.o,$(wildcard $(sourcedir)/*.cpp)))
 
 h ?= 800
 w ?= 800
