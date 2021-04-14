@@ -9,9 +9,10 @@ w ?= 800
 script ?= script
 pic ?= face
 
-run: $(targetdir)/main.out
+run: build
 	@echo "Running executable..."
 	@./$(targetdir)/main.out $(script) $(w) $(h)
+	@echo "Displaying picture..."
 	-@display $(pic).ppm
 	@echo "Picture can be found at $(pic).ppm"
 
