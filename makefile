@@ -1,33 +1,37 @@
 sourcedir = src
+objdir = obj
 targetdir = bin
 
-deps = parametric.o matrix.o parser.o screen.o transform_manager.o
-list = $(addprefix $(targetdir)/,$(deps))
+deps = main.o parametric.o matrix.o parser.o screen.o transform_manager.o
+list = $(addprefix $(objdir)/,$(deps))
 
 h ?= 800
 w ?= 800
 script ?= script
+pic ?= face
 
-run: main.out
-	./main.out $(script) $(w) $(h)
-	-display face.ppm
-	@echo face.ppm
+run: $(targetdir)/main.out
+	./$(targetdir)/main.out $(script) $(w) $(h)
+	-display $(pic).ppm
+	@echo $(pic).ppm
 
-main.out: $(list) main.o
-	g++ -o $@ main.o $(list)
+$(targetdir)/main.out: $(list) | $(targetdir)
+	g++ -o $@ $(list)
 
-main.o: main.cpp
-	g++ -c main.cpp
+$(list): $(objdir)/%.o : $(sourcedir)/%.cpp | $(objdir)
+	g++ -c $< -o $@
+
+$(objdir):
+	mkdir -p $@
 
 $(targetdir):
 	mkdir -p $@
 
-$(list): $(targetdir)/%.o : $(sourcedir)/%.cpp | $(targetdir)
-	g++ -c $< -o $@
-
 clean:
-	-rm main.out
-	-rm main.o
-	-rm -r bin
+	-rm -r $(objdir)
+
+remove: clean
+	-rm -r $(targetdir)
+	-rm $(pic).ppm
 	
-.PHONY: run clean
+.PHONY: run clean remove

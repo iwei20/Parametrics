@@ -1,5 +1,5 @@
-#include "src/parser.hpp"
-#include "src/screen.hpp"
+#include "parser.hpp"
+#include "screen.hpp"
 #include <fstream>
 #include <iostream>
 
