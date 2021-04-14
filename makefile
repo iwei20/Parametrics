@@ -6,15 +6,12 @@ list = $(addprefix $(targetdir)/,$(deps))
 
 h ?= 800
 w ?= 800
+script ?= script
 
 run: main.out
-ifdef script
 	./main.out $(script) $(w) $(h)
 	-display face.ppm
 	@echo face.ppm
-else
-	@echo "No script name provided"
-endif
 
 main.out: $(list) main.o
 	g++ -o $@ main.o $(list)
