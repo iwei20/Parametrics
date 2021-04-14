@@ -3,7 +3,7 @@
 #include <stdexcept>
 matrix::matrix(int rows, int cols) : data(rows, std::vector<double>(cols)) {}
 
-matrix::matrix(std::vector<std::vector<double>>& vector_2d) : data(vector_2d) {
+matrix::matrix(const std::vector<std::vector<double>>& vector_2d) : data(vector_2d) {
     // Check if data has uniform column size
     if(data.size() > 1) {
         int col_size = data[0].size();

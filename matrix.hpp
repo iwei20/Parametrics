@@ -12,7 +12,7 @@ public:
      **/
     matrix(int rows, int cols);
 
-    matrix(std::vector<std::vector<double>>& vec_2d);
+    matrix(const std::vector<std::vector<double>>& vec_2d);
     /**
      * Creates a size x size identity matrix
      **/
