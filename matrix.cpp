@@ -36,7 +36,7 @@ std::ostream& operator<<(std::ostream& out, matrix& mat) {
     return out;
 }
 
-matrix& operator*(matrix& a, matrix& b) {
+matrix& operator*(const matrix& a, const matrix& b) {
     if(a.width() != b.height()) {
         throw std::invalid_argument("Number of columns in matrix a should be equal to rows in matrix b");
     }
@@ -57,7 +57,7 @@ std::vector<double>& matrix::operator[](int index) {
     return data[index];
 }
 
-double matrix::get(int row, int col) {
+double matrix::get(int row, int col) const {
     if(row < 0 || row >= data.size() || col < 0 || col >= data[0].size()) {
         throw std::invalid_argument("Requested matrix element out of bounds");
     }
@@ -71,10 +71,10 @@ void matrix::set(int row, int col, double num) {
     data[row][col] = num;
 }
 
-int matrix::width() {
+int matrix::width() const {
     return data[0].size();
 }
 
-int matrix::height() {
+int matrix::height() const {
     return data.size();
 }

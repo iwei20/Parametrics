@@ -26,7 +26,7 @@ public:
     /**
      * Performs matrix multiplication and returns the result.
      **/
-    friend matrix& operator*(matrix& a, matrix& b);
+    friend matrix& operator*(const matrix& a, const matrix& b);
 
     /**
      * Reference to matrix entry
@@ -36,7 +36,7 @@ public:
     /**
      * Returns matrix entry
      **/
-    double get(int row, int col);
+    double get(int row, int col) const;
 
     /**
      * Sets matrix entry
@@ -46,11 +46,11 @@ public:
     /**
      * Returns the width (number of columns) of this matrix
      **/
-    int width();
+    int width() const;
 
     /**
      * Retursn the height (number of rows) of this matrix
      **/
-    int height();
+    int height() const;
 };
 
