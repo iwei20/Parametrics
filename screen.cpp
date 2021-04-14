@@ -1,6 +1,7 @@
 #include "screen.hpp"
 
 #include <iostream>
+
 screen::screen(int width, int height) : colorData(height, std::vector<std::tuple<short, short, short>>(width)) {}
 
 bool screen::outbounds(int x, int y) {

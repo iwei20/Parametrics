@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include "matrix.hpp"
+#include <vector>
 
 class parametric_func {
     public:

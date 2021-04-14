@@ -1,6 +1,6 @@
 #pragma once
 
-#include "edge_matrix.hpp"
+#include "matrix.hpp"
 #include <ostream>
 #include <tuple>
 

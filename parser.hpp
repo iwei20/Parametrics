@@ -1,9 +1,10 @@
 #pragma once
 
 #include "screen.hpp"
-#include "edge_matrix.hpp"
+#include "matrix.hpp"
 #include "transform_manager.hpp"
 #include <istream>
+
 class parser {
     private:
         edge_matrix _e;

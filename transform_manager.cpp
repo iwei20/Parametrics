@@ -1,6 +1,7 @@
 #include "transform_manager.hpp"
 
 #include <cmath>
+
 transform_manager::transform_manager() : m{matrix::ident(4)} {}
 
 const double convert_rad = M_PI / 180;
