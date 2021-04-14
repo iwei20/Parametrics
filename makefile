@@ -11,27 +11,39 @@ script ?= script
 pic ?= face
 
 run: $(targetdir)/main.out
-	./$(targetdir)/main.out $(script) $(w) $(h)
-	-display $(pic).ppm
-	@echo $(pic).ppm
+	@echo "Running executable..."
+	@./$(targetdir)/main.out $(script) $(w) $(h)
+	-@display $(pic).ppm
+	@echo "Picture can be found at $(pic).ppm"
+
+build: $(targetdir)/main.out
+	@echo "Build finished"
 
 $(targetdir)/main.out: $(list) | $(targetdir)
-	g++ -o $@ $(list)
+	@echo "Linking to executable..."
+	@g++ -o $@ $(list)
+	@echo "Executable $@ linked"
 
 $(list): $(objdir)/%.o : $(sourcedir)/%.cpp | $(objdir)
-	g++ -c $< -o $@
+	@echo "Compiling $(<F)"
+	@g++ -c $< -o $@
 
 $(objdir):
-	mkdir -p $@
+	@echo "Making object directory..."
+	@mkdir -p $@
 
 $(targetdir):
-	mkdir -p $@
+	@echo "Making binary directory..."
+	@mkdir -p $@
 
 clean:
-	-rm -r $(objdir)
+	@echo "Removing object directory..."
+	-@rm -r $(objdir)
 
 remove: clean
-	-rm -r $(targetdir)
-	-rm $(pic).ppm
+	@echo "Removing target directory..."
+	-@rm -r $(targetdir)
+	@echo "Removing picture..."
+	-@rm $(pic).ppm
 	
-.PHONY: run clean remove
+.PHONY: run build clean remove
