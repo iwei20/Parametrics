@@ -1,24 +1,36 @@
-run: main.out
-	ifndef script
-		@echo "No script name provided"
-	else
-		h ?= 500
-		w ?= 500
-		./main.out $(script) $(w) $(h)
-	endif
+sourcedir = src
+targetdir = bin
 
-main.out: main.o bin/%.o
-	g++ -o main.out main.o bin/%.o
+deps = parametric.o matrix.o parser.o screen.o transform_manager.o
+list = $(addprefix $(targetdir)/,$(deps))
+
+h ?= 800
+w ?= 800
+
+run: main.out
+ifdef script
+	./main.out $(script) $(w) $(h)
+	-display face.ppm
+	@echo face.ppm
+else
+	@echo "No script name provided"
+endif
+
+main.out: $(list) main.o
+	g++ -o $@ main.o $(list)
 
 main.o: main.cpp
 	g++ -c main.cpp
 
-bin/%.o: src/%.cpp
-	mkdir bin
+$(targetdir):
+	mkdir -p $@
+
+$(list): $(targetdir)/%.o : $(sourcedir)/%.cpp | $(targetdir)
 	g++ -c $< -o $@
 
 clean:
 	-rm main.out
-	-rmdir -r bin
+	-rm main.o
+	-rm -r bin
 	
 .PHONY: run clean

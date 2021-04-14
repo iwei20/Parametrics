@@ -11,7 +11,6 @@ void parser::parse(screen& s, std::istream& in) {
         if(line[0] == '#') {
             continue;
         }
-        
         if(line == "line") {
             double x1, y1, z1, x2, y2, z2;
             in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2;
@@ -45,6 +44,24 @@ void parser::parse(screen& s, std::istream& in) {
                     _t.zRot(degrees);
                     break;
             }
+        }
+        if(line == "circle") {
+            double cx, cy, cz, r;
+            in >> cx >> cy >> cz >> r;
+            circle_parametric c(cx, cy, r);
+            _e.add_parametric(c.xfunc(), c.yfunc(), const_parametric(cz), 100);
+        }
+        if(line == "hermite") {
+            double x0, y0, x1, y1, rx0, ry0, rx1, ry1;
+            in >> x0 >> y0 >> x1 >> y1 >> rx0 >> ry0 >> rx1 >> ry1;
+            hermite_parametric h({x0, y0}, {x1, y1}, {rx0, ry0}, {rx1, ry1});
+            _e.add_parametric(h.xfunc(), h.yfunc(), const_parametric(0), 100);
+        }
+        if(line == "bezier") {
+            double x0, y0, x1, y1, x2, y2, x3, y3;
+            in >> x0 >> y0 >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+            bezier_parametric b({x0, y0}, {x1, y1}, {x2, y2}, {x3, y3});
+            _e.add_parametric(b.xfunc(), b.yfunc(), const_parametric(0), 100);
         }
         if(line == "apply") {
             _e = _t.get_matrix() * _e;

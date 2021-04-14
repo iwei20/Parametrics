@@ -1,7 +1,7 @@
 #include "parametric.hpp"
 
 #include <cmath>
-
+#include <iostream> 
 std::vector<double>& parametric_func::get_range(int num_vals) const {
     std::vector<double>* range = new std::vector<double>();
     double increment = 1.0 / (num_vals - 1); 
