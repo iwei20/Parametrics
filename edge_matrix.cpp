@@ -2,7 +2,7 @@
 #include <tuple>
 edge_matrix::edge_matrix() : matrix(4, 0) {}
 
-void edge_matrix::add_point(std::tuple<double, double, double> point) {
+void edge_matrix::add_point(const std::tuple<double, double, double>& point) {
     double x, y, z;
     std::tie(x, y, z) = point;
     data[0].push_back(x);
@@ -11,12 +11,12 @@ void edge_matrix::add_point(std::tuple<double, double, double> point) {
     data[3].push_back(1);
 }
 
-void edge_matrix::add_edge(std::tuple<double, double, double> a, std::tuple<double, double, double> b) {
+void edge_matrix::add_edge(const std::tuple<double, double, double>& a, const std::tuple<double, double, double>& b) {
     add_point(a);
     add_point(b);
 };
 
-void edge_matrix::add_parametric(parametric_func& x, parametric_func& y, parametric_func& z, int num_points) {
+void edge_matrix::add_parametric(const parametric_func& x, const parametric_func& y, const parametric_func& z, int num_points) {
     std::vector<double> xpoints = x.get_range(num_points);
     std::vector<double> ypoints = y.get_range(num_points);
     std::vector<double> zpoints = z.get_range(num_points);
