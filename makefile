@@ -1,26 +1,24 @@
-name = main
-scriptname = script
-picture = pic
-deps = matrix.o screen.o transform_manager.o parser.o parametric.o
+run: main.out
+	ifndef script
+		@echo "No script name provided"
+	else
+		h ?= 500
+		w ?= 500
+		./main.out $(script) $(w) $(h)
+	endif
 
-all: run
+main.out: main.o bin/%.o
+	g++ -o main.out main.o bin/%.o
 
-run: $(name).out $(scriptname)
-	./$(name).out $(scriptname)
-	-display $(picture).ppm
-	echo $(picture).ppm
+main.o: main.cpp
+	g++ -c main.cpp
 
-$(name).out: $(name).o $(deps)
-	g++ -o $(name).out $(name).o $(deps)
-
-$(name).o: $(name).cpp
-	g++ -c $(name).cpp
-
-$(deps): %.o: %.cpp
-	g++ -c $<
+bin/%.o: src/%.cpp
+	mkdir bin
+	g++ -c $< -o $@
 
 clean:
-	-rm $(name).out
-	-rm $(picture).ppm
-	-rm *.o
+	-rm main.out
+	-rmdir -r bin
 	
+.PHONY: run clean
