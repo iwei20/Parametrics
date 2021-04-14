@@ -47,14 +47,14 @@ class circle_parametric {
 class hermite_parametric {
     private:
         static matrix inverse_mult;
-        class hermite_parametric_x {
+        class hermite_parametric_x : public parametric_func {
             private:
                 matrix m;
             public:
                 hermite_parametric_x(double x0, double x1, double rx0, double rx1);
                 double get(double t) const;
         };
-        class hermite_parametric_y {
+        class hermite_parametric_y : public parametric_func {
             private:
                 matrix m;
             public:
@@ -77,7 +77,7 @@ class hermite_parametric {
 class bezier_parametric {
     private:
         static matrix binomial_mult;
-        class bezier_parametric_x {
+        class bezier_parametric_x : public parametric_func {
             private:
                 matrix m;
                 double m_x0, m_x1, m_x2, m_x3;
@@ -85,7 +85,7 @@ class bezier_parametric {
                 bezier_parametric_x(double x0, double x1, double x2, double x3);
                 double get(double t) const;
         };
-        class bezier_parametric_y {
+        class bezier_parametric_y : public parametric_func {
             private:
                 matrix m;
                 double m_y0, m_y1, m_y2, m_y3;
