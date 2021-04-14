@@ -1,7 +1,7 @@
 name = main
 scriptname = script
 picture = pic
-deps = matrix.o screen.o edge_matrix.o transform_manager.o parser.o
+deps = matrix.o screen.o transform_manager.o parser.o parametric.o
 
 all: run
 
