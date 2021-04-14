@@ -50,7 +50,7 @@ void transform_manager::zRot(double degrees) {
     m = to_mult * m;
 }
 
-matrix& transform_manager::get_matrix() {
+const matrix& transform_manager::get_matrix() {
     return m;
 }
 

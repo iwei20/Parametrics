@@ -38,7 +38,7 @@ class transform_manager {
         /**
          * Returns a reference to the matrix.
          **/
-        matrix& get_matrix();
+        const matrix& get_matrix();
 
         /**
          * Replaces the matrix reference with a new identity matrix.
