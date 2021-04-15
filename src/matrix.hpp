@@ -29,7 +29,7 @@ public:
     /**
      * Performs matrix multiplication and returns the result.
      **/
-    friend matrix& operator*(const matrix& a, const matrix& b);
+    friend matrix operator*(const matrix& a, const matrix& b);
 
     /**
      * Reference to matrix entry

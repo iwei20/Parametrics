@@ -38,21 +38,21 @@ std::ostream& operator<<(std::ostream& out, const matrix& mat) {
     return out;
 }
 
-matrix& operator*(const matrix& a, const matrix& b) {
+matrix operator*(const matrix& a, const matrix& b) {
     if(a.width() != b.height()) {
         throw std::invalid_argument("Number of columns in matrix a should be equal to rows in matrix b");
     }
-    matrix* result = new matrix(a.height(), b.width());
+    matrix result(a.height(), b.width());
     for(int i = 0; i < a.height(); ++i) {
         for(int j = 0; j < b.width(); ++j) {
             double sum = 0;
             for(int k = 0; k < a.width(); ++k) {
-                sum += a.data[i][k] * b.data[k][j];
+                sum += a.get(i, k) * b.get(k, j);
             }
-            (*result)[i][j] = sum;
+            result[i][j] = sum;
         }
     }
-    return (*result);
+    return result;
 }
 
 std::vector<double>& matrix::operator[](int index) {
