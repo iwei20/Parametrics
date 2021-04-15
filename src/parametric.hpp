@@ -12,7 +12,7 @@ class bezier_parametric;
 class parametric_func {
     public:
         virtual double get(double t) const = 0;
-        std::vector<double>& get_range(int num_vals) const;
+        std::vector<double> get_range(int num_vals) const;
 };
 
 class const_parametric : public parametric_func {

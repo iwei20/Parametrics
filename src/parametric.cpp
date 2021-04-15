@@ -2,13 +2,13 @@
 
 #include <cmath>
 #include <iostream> 
-std::vector<double>& parametric_func::get_range(int num_vals) const {
-    std::vector<double>* range = new std::vector<double>();
+std::vector<double> parametric_func::get_range(int num_vals) const {
+    std::vector<double> range;
     double increment = 1.0 / (num_vals - 1); 
     for(int i = 0; i < num_vals; ++i) {
-        range->push_back(get(i * increment));
+        range.push_back(get(i * increment));
     }
-    return *range;
+    return range;
 }
 
 const_parametric::const_parametric(double constant) : m_constant(constant) {}
